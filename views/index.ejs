@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>League Stats</title>
   <link rel="stylesheet" href="/styles/style.css">
+  <link rel="stylesheet" href="/styles/the-finals.css">
 </head>
 <body>
   <img id="lol-logo" src="./images/lol-logo.png" alt="League of Legends Logo">
@@ -12,10 +13,17 @@
   <%- include("./league/lol-stats-container.ejs") %>
 
   <div class="lol-forms-container">
-    <%# insert lol forms here %>
-      <%- include("./league/2-champ-win-p.ejs") %>
-    <%# insert lol forms here %>
+      <%- include("./league/2-champ.ejs") %>
   </div>
+
+  <div class="the-finals-container">
+    <div id="the-finals-header">
+      <img id="the-finals-logo" src="./images/the-finals-logo.jpg" alt="The Finals Logo">
+    </div>
+    <%- include("./the-finals/the-finals-stats-container.ejs") %>
+  </div>
+  
+
   <script type="module" src="/scripts/league/league.js"></script>
 </body>
 </html>

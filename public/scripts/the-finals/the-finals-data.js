@@ -718,4 +718,4 @@ const theFinalsData = {
   }
 };
 
-module.exports = theFinalsData;
+export default theFinalsData;

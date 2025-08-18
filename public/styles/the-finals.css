@@ -1,0 +1,60 @@
+.the-finals-container {
+    background-color: #d21f3c;
+    margin: 0px auto;
+    padding: 0px 0px 1rem 0px;
+}
+
+#the-finals-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #d21f3c;
+  padding: 10px;
+}
+
+#the-finals-logo {
+    width: 300px;
+}
+
+#the-finals-stats-container {
+  display: flex;
+  padding: 16px;
+  background: none;
+  border-radius: 8px;
+  border: 2px solid #000000;
+  margin: 0px 1rem 10px 1rem;
+}
+
+.the-finals-stats-section {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  flex-grow: 1;
+  flex: 1;
+  text-align: center;
+  margin: 0px 0px 0px 0px;
+}
+
+.the-finals-stats-section-title {
+  background: linear-gradient(to right, #000000, #292929, #000000);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin: 0px 0px 0px 0px;
+}
+
+.the-finals-stats-section-content {
+  color: #ffffff;
+  font-size: 1.2rem;
+  margin: 10px 0;
+}
+
+.the-finals-stats-section-stat {
+  color: #ffffff;
+  font-size: 1.2rem;
+  margin: 5px 0;
+}
+
+

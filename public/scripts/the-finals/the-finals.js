@@ -1,5 +1,4 @@
-const leagueMatchData = require('../league/league-data.js');
-const theFinalsData = require ('./the-finals-data.js');
+import theFinalsData from './the-finals-data.js';
 
 
 // Calculate worldtour wins 
@@ -145,12 +144,12 @@ const highestWinStreak = (data) => {
   data.gameMode.worldTour.forEach(game => {
     if (game.place === 1) {
       currentStreak++;
-    } else {
       if (currentStreak > maxStreak) {
         maxStreak = currentStreak;
-      };
+      }
+    } else {
       currentStreak = 0;
-    };
+    }
   });
   return Math.max(maxStreak, currentStreak);
 };
