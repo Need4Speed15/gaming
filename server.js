@@ -36,36 +36,22 @@ app.get("/", (req, res) => {
 });
 
 // Handle form submission
-app.post("/2champwinp", (req, res) => {
+app.post("/lol2champ", (req, res) => {
   const { player1, champ1, lane1, player2, champ2, lane2 } = req.body;
-  const gamesWon = (leagueMatchData.games
-      .filter(g => g.players.some(p => p.name === player1 && p.champion === champ1 && p.lane === lane1)
-        && g.players.some(p => p.name === player2 && p.champion === champ2 && p.lane === lane2))
-      .filter(g => g.result === "Win").length);
+
+  // Win Percentage Calculation
+  const gamesWon = leagueMatchData.games
+    .filter(g => g.players.some(p => p.name === player1 && p.champion === champ1 && p.lane === lane1)
+      && g.players.some(p => p.name === player2 && p.champion === champ2 && p.lane === lane2))
+    .filter(g => g.result === "Win").length;
 
   const totalGames = leagueMatchData.games
     .filter(g => g.players.some(p => p.name === player1 && p.champion === champ1 && p.lane === lane1)
       && g.players.some(p => p.name === player2 && p.champion === champ2 && p.lane === lane2)).length;
-  const winPercentage = (gamesWon / totalGames * 100).toFixed(1);
-  if (totalGames === 0) {
-    res.render("index.ejs", {
-      result: "",
-      availChamps: availChamps,
-      availLanes: availLanes,
-      twoChampWinPInvalid: true
-    });
-  } else {
-    res.render("index.ejs", {
-      result: winPercentage,
-      availChamps: availChamps,
-      availLanes: availLanes,
-      totalGames: totalGames
-    });
-  }
-});
 
-app.post("/2champkda", (req, res) => {
-  const { player1, champ1, lane1, player2, champ2, lane2 } = req.body;
+  const winPercentage = totalGames === 0 ? null : (gamesWon / totalGames * 100).toFixed(1);
+
+  // KDA Calculation
   let totalKills = 0;
   let totalDeaths = 0;
   let totalAssists = 0;
@@ -83,22 +69,29 @@ app.post("/2champkda", (req, res) => {
     }
   });
 
-  const twoChampKda = totalDeaths === 0
-    ? totalKills + totalAssists
-    : ((totalKills + totalAssists) / totalDeaths).toFixed(2);
+  const twoChampKda = twoChampKdaTotalGames === 0
+    ? null
+    : (totalDeaths === 0
+      ? totalKills + totalAssists
+      : ((totalKills + totalAssists) / totalDeaths).toFixed(2));
 
-  if (twoChampKdaTotalGames !== 0) {
+  // Render response
+  if (totalGames === 0 || twoChampKdaTotalGames === 0) {
     res.render("index.ejs", {
-      twoChampKda: twoChampKda,
+      result: "",
       availChamps: availChamps,
       availLanes: availLanes,
-      twoChampKdaTotalGames: twoChampKdaTotalGames
+      twoChampInvalid: true
     });
   } else {
     res.render("index.ejs", {
+      result: true,
+      twoChampWinP: winPercentage,
       availChamps: availChamps,
       availLanes: availLanes,
-      twoChampKdaInvalid: true
+      totalGames: totalGames,
+      twoChampKda: twoChampKda,
+      twoChampTotalGames: twoChampKdaTotalGames
     });
   }
 });
