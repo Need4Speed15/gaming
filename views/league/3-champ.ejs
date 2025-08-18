@@ -1,0 +1,72 @@
+<div class="form-container" id="lol3-champ-form">
+  <h2>Trio</h2>
+  <form class="lol3champ" action="/lol3champ" method="POST">
+
+    <label for="lol3ChampPlayer1">Players:</label>
+    <select id="lol3ChampPlayer1" name="player1">
+      <option value="">-P1-</option>
+      <option value="Cody">Cody</option>
+      <option value="Sammy">Sammy</option>
+      <option value="Jason">Jason</option>
+    </select>
+    <select id="lol3ChampPlayer2" name="player2">
+      <option value="">-P2-</option>
+      <option value="Cody">Cody</option>
+      <option value="Sammy">Sammy</option>
+      <option value="Jason">Jason</option>
+    </select>
+    <select id="lol3ChampPlayer3" name="player3">
+      <option value="">-P3-</option>
+      <option value="Cody">Cody</option>
+      <option value="Sammy">Sammy</option>
+      <option value="Jason">Jason</option>
+    </select>
+
+    <label for="lol3ChampWinPChamp1">Champions:</label>
+    <select id="lol3ChampWinPChamp1" name="champ1">
+      <option value="">-C1-</option>
+        <% availChamps.forEach(champ => { %>
+          <option value="<%= champ %>"><%= champ %></option>
+        <% }); %>
+    </select>
+    <select id="lol3ChampWinPChamp2" name="champ2">
+      <option value="">-C2-</option>
+        <% availChamps.forEach(champ => { %>
+          <option value="<%= champ %>"><%= champ %></option>
+        <% }); %>
+    </select>
+    <select id="lol3ChampWinPChamp3" name="champ3">
+      <option value="">-C3-</option>
+        <% availChamps.forEach(champ => { %>
+          <option value="<%= champ %>"><%= champ %></option>
+        <% }); %>
+    </select>
+
+    <label for="lol3ChampWinPLane1">Lanes:</label>
+    <select id="lol3ChampWinPLane1" name="lane1">
+      <option value="">-L1-</option>
+        <% availLanes.forEach(lane => { %>
+          <option value="<%= lane %>"><%= lane %></option>
+        <% }); %>
+    </select>
+    <select id="lol3ChampWinPLane2" name="lane2">
+      <option value="">-L2-</option>
+        <% availLanes.forEach(lane => { %>
+          <option value="<%= lane %>"><%= lane %></option>
+        <% }); %>
+    </select>
+    <select id="lol3ChampWinPLane3" name="lane3">
+      <option value="">-L3-</option>
+        <% availLanes.forEach(lane => { %>
+          <option value="<%= lane %>"><%= lane %></option>
+        <% }); %>
+    </select>
+
+    <button type="submit">Submit</button>
+    
+    <h3 class="lol3champ" id="results">
+      <%- locals.threeChampTotalGames ? `<br> ${threeChampWinP}% WR <br><br> KDA: ${threeChampKda} <br><br> Games: ${threeChampTotalGames}` : "" %>
+      <%= locals.threeChampInvalid ? `No games found together` : "" %>
+    </h3>
+  </form>
+</div>

@@ -79,7 +79,19 @@ h2 {
   padding: 24px;
   border-radius: 8px;
   box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-  width: 220px;
+  width: 200px;
+  min-width: 100px;
+  height: 555px;
+  margin: 0 5px 10px 5px;
+}
+
+.form-container#lol3-champ-form {
+  background: #1E1F26;
+  padding: 24px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  width: 330px;
+  min-width: 230px;
   height: 555px;
   margin: 0 5px 10px 5px;
 }
@@ -93,6 +105,15 @@ form label {
 
 form select {
   width: 100%;
+  padding: 6px;
+  margin-bottom: 8px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+}
+
+form.lol3champ select {
+  display: inline-block;
+  width: 32%;
   padding: 6px;
   margin-bottom: 8px;
   border-radius: 4px;

@@ -35,7 +35,7 @@ app.get("/", (req, res) => {
   });
 });
 
-// Handle form submission
+// Handle lol2champ form submission
 app.post("/lol2champ", (req, res) => {
   const { player1, champ1, lane1, player2, champ2, lane2 } = req.body;
 
@@ -78,14 +78,13 @@ app.post("/lol2champ", (req, res) => {
   // Render response
   if (totalGames === 0 || twoChampKdaTotalGames === 0) {
     res.render("index.ejs", {
-      result: "",
+      twoChampTotalGames: "",
       availChamps: availChamps,
       availLanes: availLanes,
       twoChampInvalid: true
     });
   } else {
     res.render("index.ejs", {
-      result: true,
       twoChampWinP: winPercentage,
       availChamps: availChamps,
       availLanes: availLanes,
@@ -96,6 +95,68 @@ app.post("/lol2champ", (req, res) => {
   }
 });
 
+// Handle lol3champ form submission
+app.post("/lol3champ", (req, res) => {
+  const { player1, champ1, lane1, player2, champ2, lane2, player3, champ3, lane3 } = req.body;
+
+  // Win Percentage Calculation
+  const gamesWon = leagueMatchData.games
+    .filter(g => g.players.some(p => p.name === player1 && p.champion === champ1 && p.lane === lane1)
+      && g.players.some(p => p.name === player2 && p.champion === champ2 && p.lane === lane2)
+      && g.players.some(p => p.name === player3 && p.champion === champ3 && p.lane === lane3))
+    .filter(g => g.result === "Win").length;
+
+  const totalGames = leagueMatchData.games
+    .filter(g => g.players.some(p => p.name === player1 && p.champion === champ1 && p.lane === lane1)
+      && g.players.some(p => p.name === player2 && p.champion === champ2 && p.lane === lane2)
+      && g.players.some(p => p.name === player3 && p.champion === champ3 && p.lane === lane3)).length;
+
+  const winPercentage = totalGames === 0 ? null : (gamesWon / totalGames * 100).toFixed(1);
+
+  // KDA Calculation
+  let totalKills = 0;
+  let totalDeaths = 0;
+  let totalAssists = 0;
+  let threeChampKdaTotalGames = 0;
+
+  leagueMatchData.games.forEach(game => {
+    const p1 = game.players.find(p => p.name === player1 && p.champion === champ1 && p.lane === lane1);
+    const p2 = game.players.find(p => p.name === player2 && p.champion === champ2 && p.lane === lane2);
+    const p3 = game.players.find(p => p.name === player3 && p.champion === champ3 && p.lane === lane3);
+
+    if (p1 && p2 && p3) {
+      totalKills += p1.k + p2.k + p3.k;
+      totalDeaths += p1.d + p2.d + p3.d;
+      totalAssists += p1.a + p2.a + p3.a;
+      threeChampKdaTotalGames++;
+    }
+  });
+
+  const threeChampKda = threeChampKdaTotalGames === 0
+    ? null
+    : (totalDeaths === 0
+      ? totalKills + totalAssists
+      : ((totalKills + totalAssists) / totalDeaths).toFixed(2));
+
+  // Render response
+  if (totalGames === 0 || threeChampKdaTotalGames === 0) {
+    res.render("index.ejs", {
+      threeChampTotalGames: "",
+      availChamps: availChamps,
+      availLanes: availLanes,
+      threeChampInvalid: true
+    });
+  } else {
+    res.render("index.ejs", {
+      threeChampWinP: winPercentage,
+      availChamps: availChamps,
+      availLanes: availLanes,
+      totalGames: totalGames,
+      threeChampKda: threeChampKda,
+      threeChampTotalGames: threeChampKdaTotalGames
+    });
+  }
+});
 
 app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);

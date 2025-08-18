@@ -53,7 +53,7 @@
     <button type="submit">Submit</button>
     
     <h3 id="results">
-      <%= locals.result ? `${twoChampWinP}% WR, KDA: ${twoChampKda}, Games: ${twoChampTotalGames}` : "" %>
+      <%= locals.twoChampTotalGames ? `${twoChampWinP}% WR, KDA: ${twoChampKda}, Games: ${twoChampTotalGames}` : "" %>
       <%= locals.twoChampInvalid ? `No games found together` : "" %>
     </h3>
   </form>
