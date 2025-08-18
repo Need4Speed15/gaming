@@ -1,0 +1,61 @@
+<div class="form-container">
+      <h2>Duo Win %</h2>
+      <form action="/2champwinp" method="POST">
+
+        <label for="2ChampWinPPlayer1">Player 1:</label>
+        <select id="2ChampWinPPlayer1" name="player1">
+          <option value="">-- Pick Player --</option>
+          <option value="Cody">Cody</option>
+          <option value="Sammy">Sammy</option>
+          <option value="Jason">Jason</option>
+        </select>
+
+        <label for="2ChampWinPChamp1">Champion 1:</label>
+        <select id="2ChampWinPChamp1" name="champ1">
+          <option value="">-- Pick Champion --</option>
+            <% availChamps.forEach(champ => { %>
+              <option value="<%= champ %>"><%= champ %></option>
+            <% }); %>
+        </select>
+
+        <label for="2ChampWinPLane1">Lane 1:</label>
+        <select id="2ChampWinPLane1" name="lane1">
+          <option value="">-- Pick Lane --</option>
+            <% availLanes.forEach(lane => { %>
+              <option value="<%= lane %>"><%= lane %></option>
+            <% }); %>
+        </select>
+
+        <label for="player2">Player 2:</label>
+        <select id="2ChampWinPPlayer2" name="player2">
+          <option value="">-- Pick Player --</option>
+          <option value="Cody">Cody</option>
+          <option value="Sammy">Sammy</option>
+          <option value="Jason">Jason</option>
+        </select>
+
+        <label for="2ChampWinPChamp2">Champion 2:</label>
+        <select id="2ChampWinPChamp2" name="champ2">
+          <option value="">-- Pick Champion --</option>
+            <% availChamps.forEach(champ => { %>
+              <option value="<%= champ %>"><%= champ %></option>
+            <% }); %>
+        </select>
+
+        <label for="2ChampWinPLane2">Lane 2:</label>
+        <select id="2ChampWinPLane2" name="lane2">
+          <option value="">-- Pick Lane --</option>
+            <% availLanes.forEach(lane => { %>
+              <option value="<%= lane %>"><%= lane %></option>
+            <% }); %>
+        </select>
+
+        <button type="submit">Submit</button>
+        
+        <h3 id="results">
+          <%= locals.result ? `${result}% of ${totalGames} games` : "" %>
+          <%= locals.twoChampWinPInvalid ? `No games found together` : "" %>
+        </h3>
+
+      </form>
+    </div>

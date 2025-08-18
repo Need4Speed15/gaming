@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>League Stats</title>
+  <link rel="stylesheet" href="/styles/style.css">
+</head>
+<body>
+  <img id="lol-logo" src="./images/lol-logo.png" alt="League of Legends Logo">
+
+  <%- include("./league/lol-stats-container.ejs") %>
+
+  <div class="lol-forms-container">
+    <%# insert lol forms here %>
+      <%- include("./league/2-champ-win-p.ejs") %>
+      <%- include("./league/2-champ-kda.ejs") %>
+    <%# insert lol forms here %>
+  </div>
+  <script type="module" src="/scripts/league/league.js"></script>
+</body>
+</html>
