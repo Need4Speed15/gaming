@@ -494,6 +494,38 @@ const theFinalsData = {
           { name: "Cody", kills: 9, assists: 9, deaths: 11, revives: 2 },
           { name: "Jason", kills: 6, assists: 5, deaths: 8, revives: 2 }
         ]
+      },
+      {
+        gameNumber: 59,
+        place: 3, cash: 112500,
+        players: [
+          { name: "Cody", kills: 10, assists: 13, deaths: 6, revives: 4 },
+          { name: "James", kills: 12, assists: 10, deaths: 8, revives: 3 }
+        ]
+      },
+      {
+        gameNumber: 60,
+        place: 2, cash: 90000,
+        players: [
+          { name: "Cody", kills: 10, assists: 8, deaths: 20, revives: 5 },
+          { name: "James", kills: 12, assists: 4, deaths: 16, revives: 7 }
+        ]
+      },
+      {
+        gameNumber: 61,
+        place: 2, cash: 90000,
+        players: [
+          { name: "Cody", kills: 10, assists: 8, deaths: 20, revives: 5 },
+          { name: "James", kills: 12, assists: 4, deaths: 16, revives: 7 }
+        ]
+      },
+      {
+        gameNumber: 62,
+        place: 5, cash: 18000,
+        players: [
+          { name: "Cody", kills: 3, assists: 3, deaths: 6, revives: 0 },
+          { name: "James", kills: 8, assists: 1, deaths: 2, revives: 5 }
+        ]
       }
     ],
     quickplay: [
@@ -712,6 +744,54 @@ const theFinalsData = {
           { name: "Cody", kills: 1, assists: 5, deaths: 8, revives: 2 },
           { name: "Jason", kills: 1, assists: 1, deaths: 8, revives: 0 },
           { name: "James", kills: 5, assists: 1, deaths: 9, revives: 1 }
+        ]
+      },
+      {
+        gameNumber: 21,
+        place: 5, cash: 23859,
+        players: [
+          { name: "Cody", kills: 6, assists: 2, deaths: 6, revives: 0 },
+          { name: "James", kills: 3, assists: 3, deaths: 5, revives: 4 }
+        ]
+      },
+      {
+        gameNumber: 22,
+        place: 6, cash: 7167,
+        players: [
+          { name: "Cody", kills: 0, assists: 3, deaths: 7, revives: 1 },
+          { name: "James", kills: 5, assists: 6, deaths: 5, revives: 3 }
+        ]
+      },
+      {
+        gameNumber: 23,
+        place: 4, cash: 32068,
+        players: [
+          { name: "Cody", kills: 12, assists: 6, deaths: 10, revives: 3 },
+          { name: "James", kills: 10, assists: 3, deaths: 8, revives: 9 }
+        ]
+      },
+      {
+        gameNumber: 24,
+        place: 6, cash: 14030,
+        players: [
+          { name: "Cody", kills: 6, assists: 3, deaths: 6, revives: 0 },
+          { name: "James", kills: 3, assists: 1, deaths: 8, revives: 0 }
+        ]
+      },
+      {
+        gameNumber: 25,
+        place: 2, cash: 92875,
+        players: [
+          { name: "Cody", kills: 12, assists: 9, deaths: 17, revives: 8 },
+          { name: "James", kills: 11, assists: 9, deaths: 19, revives: 12 }
+        ]
+      },
+      {
+        gameNumber: 26,
+        place: 4, cash: 33819,
+        players: [
+          { name: "Cody", kills: 6, assists: 4, deaths: 15, revives: 3 },
+          { name: "James", kills: 4, assists: 7, deaths: 10, revives: 11 }
         ]
       }
     ]

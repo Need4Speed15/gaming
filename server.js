@@ -29,7 +29,6 @@ const availLanes = ["Top", "Mid", "Adc", "Support", "Jungle"];
 // Render homepage with no result yet
 app.get("/", (req, res) => {
   res.render("index.ejs", { 
-    result: null, 
     availChamps: availChamps, 
     availLanes: availLanes 
   });

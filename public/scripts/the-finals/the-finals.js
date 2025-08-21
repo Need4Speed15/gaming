@@ -7,17 +7,30 @@ const totalWorldTourWins = (data) => {
     return totalWins + (game.place === 1 ? 1 : 0);
   }, 0);
 };
-console.log(`World Tour Wins: ${totalWorldTourWins(theFinalsData)}`);
+// console.log(`World Tour Wins: ${totalWorldTourWins(theFinalsData)}`);
 
 
-// Calculate worldtour win percentage
-const worldTourWP = (data) => {
-  const totalGames = data.gameMode.worldTour.length;
-  const totalWins = totalWorldTourWins(data);
+// Calculate worldtour win percentage for player 
+const worldTourWP = (playerName) => {
+  const playerGames = theFinalsData.gameMode.worldTour.filter(game => game.players.some(player => player.name === playerName));
+  const totalGames = playerGames.length;
+  const totalWins = playerGames.filter(game => game.place === 1).length;
   return ((totalWins / totalGames) * 100).toFixed(0);
 };
-console.log(`World Tour Win Percentage: ${worldTourWP(theFinalsData)}%`);
+// console.log(`World Tour Win Percentage: ${worldTourWP('Cody')}%`);
 
+document.getElementById("the-finals-cody-win-percentage").innerText = `
+  Win % - ${worldTourWP('Cody')}%
+`;
+document.getElementById("the-finals-jason-win-percentage").innerText = `
+  Win % - ${worldTourWP('Jason')}%
+`;
+document.getElementById("the-finals-sammy-win-percentage").innerText = `
+  Win % - ${worldTourWP('Sammy')}%
+`;
+document.getElementById("the-finals-james-win-percentage").innerText = `
+  Win % - ${worldTourWP('James')}%
+`;
 
 // Calculate total cash earned in world tour and ranked modes
 const totalCashEarned = (data) => {
@@ -25,7 +38,7 @@ const totalCashEarned = (data) => {
   const rankedCash = data.gameMode.ranked.reduce((total, game) => total + (game.cash || 0), 0);
   return worldTourCash + rankedCash;
 };
-console.log(`Total Cash Earned: $${totalCashEarned(theFinalsData)}`);
+// console.log(`Total Cash Earned: $${totalCashEarned(theFinalsData)}`);
 
 
 // Calculate average place in world tour
@@ -34,7 +47,7 @@ const averagePlaceWorldTour = (data) => {
   const totalGames = data.gameMode.worldTour.length;
   return (totalPlaces / totalGames).toFixed(1);
 };
-console.log(`Average Place in World Tour: ${averagePlaceWorldTour(theFinalsData)}`);
+// console.log(`Average Place in World Tour: ${averagePlaceWorldTour(theFinalsData)}`);
 
 
 // Calculate Codys total games, kills, deaths, and assists in world tour
@@ -55,11 +68,15 @@ const codyTotalAssists = theFinalsData.gameMode.worldTour
     const codyPlayer = game.players.find(player => player.name === 'Cody');
     return totalAssists + (codyPlayer ? codyPlayer.assists : 0);
   }, 0);
-console.log(`Cody's Total Games: ${codyTotalGames}`);
-console.log(`Cody's Total Kills: ${codyTotalKills}`);
-console.log(`Cody's Total Deaths: ${codyTotalDeaths}`);
-console.log(`Cody's Total Assists: ${codyTotalAssists}`);
-console.log(`Cody's KDA: ${((codyTotalKills + codyTotalAssists) / (codyTotalDeaths )).toFixed(1)}`);
+// console.log(`Cody's Total Games: ${codyTotalGames}`);
+// console.log(`Cody's Total Kills: ${codyTotalKills}`);
+// console.log(`Cody's Total Deaths: ${codyTotalDeaths}`);
+// console.log(`Cody's Total Assists: ${codyTotalAssists}`);
+// console.log(`Cody's KDA: ${((codyTotalKills + codyTotalAssists) / (codyTotalDeaths )).toFixed(1)}`);
+
+document.getElementById("the-finals-cody-kda").innerText = `
+  KDA: ${((codyTotalKills + codyTotalAssists) / (codyTotalDeaths )).toFixed(1)}
+`;
 
 
 // Calculate Sammys total games, kills, deaths, and assists in world tour
@@ -80,12 +97,15 @@ const sammyTotalAssists = theFinalsData.gameMode.worldTour
     const sammyPlayer = game.players.find(player => player.name === 'Sammy');
     return totalAssists + (sammyPlayer ? sammyPlayer.assists : 0);
   }, 0);
-console.log(`Sammy's Total Games: ${sammyTotalGames}`);
-console.log(`Sammy's Total Kills: ${sammyTotalKills}`);
-console.log(`Sammy's Total Deaths: ${sammyTotalDeaths}`);
-console.log(`Sammy's Total Assists: ${sammyTotalAssists}`);
-console.log(`Sammy's KDA: ${((sammyTotalKills + sammyTotalAssists) / (sammyTotalDeaths )).toFixed(1)}`);
+// console.log(`Sammy's Total Games: ${sammyTotalGames}`);
+// console.log(`Sammy's Total Kills: ${sammyTotalKills}`);
+// console.log(`Sammy's Total Deaths: ${sammyTotalDeaths}`);
+// console.log(`Sammy's Total Assists: ${sammyTotalAssists}`);
+// console.log(`Sammy's KDA: ${((sammyTotalKills + sammyTotalAssists) / (sammyTotalDeaths )).toFixed(1)}`);
 
+document.getElementById("the-finals-sammy-kda").innerText = `
+  KDA: ${((sammyTotalKills + sammyTotalAssists) / (sammyTotalDeaths )).toFixed(1)}
+`;
 
 // Calculate Jasons total games, kills, deaths, and assists in world tour
 const jasonTotalGames = theFinalsData.gameMode.worldTour
@@ -105,12 +125,15 @@ const jasonTotalAssists = theFinalsData.gameMode.worldTour
     const jasonPlayer = game.players.find(player => player.name === 'Jason');
     return totalAssists + (jasonPlayer ? jasonPlayer.assists : 0);
   }, 0);
-console.log(`Jason's Total Games: ${jasonTotalGames}`);
-console.log(`Jason's Total Kills: ${jasonTotalKills}`);
-console.log(`Jason's Total Deaths: ${jasonTotalDeaths}`);
-console.log(`Jason's Total Assists: ${jasonTotalAssists}`);
-console.log(`Jason's KDA: ${((jasonTotalKills + jasonTotalAssists) / (jasonTotalDeaths )).toFixed(1)}`);
+// console.log(`Jason's Total Games: ${jasonTotalGames}`);
+// console.log(`Jason's Total Kills: ${jasonTotalKills}`);
+// console.log(`Jason's Total Deaths: ${jasonTotalDeaths}`);
+// console.log(`Jason's Total Assists: ${jasonTotalAssists}`);
+// console.log(`Jason's KDA: ${((jasonTotalKills + jasonTotalAssists) / (jasonTotalDeaths )).toFixed(1)}`);
 
+document.getElementById("the-finals-jason-kda").innerText = `
+  KDA: ${((jasonTotalKills + jasonTotalAssists) / (jasonTotalDeaths )).toFixed(1)}
+`;
 
 // Calculate James total games, kills, deaths, and assists in world tour
 const jamesTotalGames = theFinalsData.gameMode.worldTour
@@ -130,12 +153,15 @@ const jamesTotalAssists = theFinalsData.gameMode.worldTour
     const jamesPlayer = game.players.find(player => player.name === 'James');
     return totalAssists + (jamesPlayer ? jamesPlayer.assists : 0);
   }, 0);
-console.log(`James's Total Games: ${jamesTotalGames}`);
-console.log(`James's Total Kills: ${jamesTotalKills}`);
-console.log(`James's Total Deaths: ${jamesTotalDeaths}`);
-console.log(`James's Total Assists: ${jamesTotalAssists}`);
-console.log(`James's KDA: ${((jamesTotalKills + jamesTotalAssists) / (jamesTotalDeaths )).toFixed(1)}`);
+// console.log(`James's Total Games: ${jamesTotalGames}`);
+// console.log(`James's Total Kills: ${jamesTotalKills}`);
+// console.log(`James's Total Deaths: ${jamesTotalDeaths}`);
+// console.log(`James's Total Assists: ${jamesTotalAssists}`);
+// console.log(`James's KDA: ${((jamesTotalKills + jamesTotalAssists) / (jamesTotalDeaths )).toFixed(1)}`);
 
+document.getElementById("the-finals-james-kda").innerText = `
+  KDA: ${((jamesTotalKills + jamesTotalAssists) / (jamesTotalDeaths )).toFixed(1)}
+`;
 
 // Calculate highest win steak in world tour
 const highestWinStreak = (data) => {
@@ -153,7 +179,7 @@ const highestWinStreak = (data) => {
   });
   return Math.max(maxStreak, currentStreak);
 };
-console.log(`Highest Win Streak in World Tour: ${highestWinStreak(theFinalsData)}`);
+// console.log(`Highest Win Streak in World Tour: ${highestWinStreak(theFinalsData)}`);
 
 
 // Calculate highest cash earned in a single world tour game
@@ -162,14 +188,14 @@ const highestCashInWorldTour = (data) => {
     return Math.max(maxCash, game.cash);
   }, 0);
 };
-console.log(`Highest Cash in a Single World Tour Game: $${highestCashInWorldTour(theFinalsData)}`);
+// console.log(`Highest Cash in a Single World Tour Game: $${highestCashInWorldTour(theFinalsData)}`);
 
 
 
 // Calculate total games played inside world tour
-const totalGamesInsideWorldTour = (data) => {
+const totalGamesInsideWorldTour = () => {
   let total = 0;
-  data.gameMode.worldTour.forEach((game) => {
+  theFinalsData.gameMode.worldTour.forEach((game) => {
     if (game.place === 1 || 2) {
       total += 3;
     } else if (game.place === 3 || 4) {
@@ -180,4 +206,51 @@ const totalGamesInsideWorldTour = (data) => {
   });
   return total;
 };
-console.log(`Total games played inside World Tour: ${totalGamesInsideWorldTour(theFinalsData)}`);
+// console.log(`Total games played inside World Tour: ${totalGamesInsideWorldTour(theFinalsData)}`);
+
+
+
+// Get highest Kills Game for player
+const getHighestKillsGame = (playerName) => {
+  let highestKills = 0;
+  let bestPlayer = {};
+  let bestGameNumber = null;
+  theFinalsData.gameMode.worldTour.forEach(game => {
+    const player = game.players.find(p => p.name === playerName);
+    if (player && player.kills > highestKills) {
+      highestKills = player.kills;
+      bestPlayer = player;
+      bestGameNumber = game.gameNumber;
+    }
+  });
+  return { bestPlayer, bestGameNumber };
+};
+
+// console.log(getHighestKillsGame('Cody'));
+// console.log(getHighestKillsGame('Jason'));
+// console.log(getHighestKillsGame('James'));
+// console.log(getHighestKillsGame('Sammy'));
+
+
+const getBestKdaGame = (playerName) => {
+  let bestKda = 0;
+  let bestPlayer = {};
+  let bestGameNumber = null;
+  theFinalsData.gameMode.worldTour.forEach(game => {
+    const player = game.players.find(p => p.name === playerName);
+    if (player) {
+      const kda = (player.kills + player.assists) / (player.deaths || 1);
+      if (kda > bestKda) {
+        bestKda = kda;
+        bestPlayer = player;
+        bestGameNumber = game.gameNumber;
+      }
+    }
+  });
+  return { bestPlayer, bestKda, bestGameNumber };
+};
+
+// console.log(getBestKdaGame('Cody'));
+// console.log(getBestKdaGame('Jason'));
+// console.log(getBestKdaGame('James'));
+// console.log(getBestKdaGame('Sammy'));
